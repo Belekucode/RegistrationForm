@@ -1,5 +1,4 @@
 -- ITW Registration Table Schema
--- This script creates the table to store registration form data
 
 CREATE TABLE IF NOT EXISTS itw_registrations (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -52,8 +51,3 @@ CREATE TRIGGER update_itw_registrations_updated_at
     BEFORE UPDATE ON itw_registrations 
     FOR EACH ROW 
     EXECUTE FUNCTION update_updated_at_column();
-
--- -- Add comments for documentation
--- COMMENT ON TABLE itw_registrations IS 'Registration data for Inclusive Technology of Washington programs';
--- COMMENT ON COLUMN itw_registrations.class_preferences IS 'JSON array of preferred class dates and times';
--- COMMENT ON COLUMN itw_registrations.status IS 'Registration status: pending, approved, rejected, waitlisted';

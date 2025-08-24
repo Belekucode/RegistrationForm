@@ -18,6 +18,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { CalendarDays, Phone, User, Heart } from "lucide-react"
+import { toast } from "sonner"
 
 interface ClassPreference {
   date: string
@@ -112,8 +113,21 @@ export default function HomePage() {
         throw new Error(result.error || "Failed to submit registration")
       }
 
-      alert("Registration submitted successfully! We will contact you soon.")
+      // Show success toast
+      toast.success("Registration Submitted Successfully!", {
+        description: "We will contact you soon with more details about your classes.",
+        duration: 5000,
+        className: "bg-green-50 border-green-200 text-green-800",
+        style: {
+          background: "var(--background)",
+          border: "2px solid var(--primary)",
+          color: "var(--foreground)",
+          borderRadius: "12px",
+          boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
+        },
+      })
 
+      // Reset form
       setFormData({
         parentName: "",
         parentPhone: "",
@@ -132,9 +146,20 @@ export default function HomePage() {
       setTermsAgreed(false)
     } catch (error) {
       console.error("Submission error:", error)
-      alert(
-        `There was an error submitting your registration: ${error instanceof Error ? error.message : "Please try again."}`,
-      )
+      
+      // Show error toast
+      toast.error("Registration Failed", {
+        description: error instanceof Error ? error.message : "Please try again or contact support.",
+        duration: 5000,
+        className: "bg-red-50 border-red-200 text-red-800",
+        style: {
+          background: "var(--background)",
+          border: "2px solid #ef4444",
+          color: "var(--foreground)",
+          borderRadius: "12px",
+          boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
+        },
+      })
     } finally {
       setIsSubmitting(false)
     }
