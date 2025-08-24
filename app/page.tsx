@@ -531,7 +531,7 @@ export default function HomePage() {
 
         {/* Footer */}
         <div className="text-center mt-8 text-sm text-muted-foreground">
-          <p>Questions? Contact us at info@itwashington.org or (555) 123-4567</p>
+          <p>Questions? Contact us at info@InclusiveTechWa.org</p>
         </div>
       </div>
     </main>
