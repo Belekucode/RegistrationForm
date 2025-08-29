@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
       "parentName",
       "parentPhone", 
       "parentEmail",
-      "participantName",
+      "participantLegalName",
       "participantDOB",
       "participantZip",
     ]
@@ -29,7 +29,8 @@ export async function POST(request: NextRequest) {
         parent_phone: formData.parentPhone,
         parent_second_phone: formData.parentSecondPhone || null,
         parent_email: formData.parentEmail,
-        participant_name: formData.participantName,
+        participant_legal_name: formData.participantLegalName,
+        participant_preferred_name: formData.participantPreferredName || null,
         participant_dob: formData.participantDOB,
         participant_zip: formData.participantZip,
         class_preferences: formData.classPreferences.filter((pref: { date: string; time: string }) => pref.date && pref.time),

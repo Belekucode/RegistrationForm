@@ -33,7 +33,8 @@ interface FormData {
   parentEmail: string
 
   // Participant Information
-  participantName: string
+  participantLegalName: string
+  participantPreferredName: string
   participantDOB: string
   participantZip: string
 
@@ -54,7 +55,8 @@ export default function HomePage() {
     parentPhone: "",
     parentSecondPhone: "",
     parentEmail: "",
-    participantName: "",
+    participantLegalName: "",
+    participantPreferredName: "",
     participantDOB: "",
     participantZip: "",
     classPreferences: [{ date: "", time: "" }],
@@ -133,7 +135,8 @@ export default function HomePage() {
         parentPhone: "",
         parentSecondPhone: "",
         parentEmail: "",
-        participantName: "",
+        participantLegalName: "",
+        participantPreferredName: "",
         participantDOB: "",
         participantZip: "",
         classPreferences: [{ date: "", time: "" }],
@@ -251,12 +254,21 @@ export default function HomePage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <Label htmlFor="participantName">Full Name *</Label>
+                <Label htmlFor="participantLegalName">Legal Name *</Label>
                 <Input
-                  id="participantName"
-                  value={formData.participantName}
-                  onChange={(e) => handleInputChange("participantName", e.target.value)}
+                  id="participantLegalName"
+                  value={formData.participantLegalName}
+                  onChange={(e) => handleInputChange("participantLegalName", e.target.value)}
                   required
+                  className="mt-1 border-2 border-gray-300 focus:border-primary"
+                />
+              </div>
+              <div>
+                <Label htmlFor="participantPreferredName">Preferred Name (Optional)</Label>
+                <Input
+                  id="participantPreferredName"
+                  value={formData.participantPreferredName}
+                  onChange={(e) => handleInputChange("participantPreferredName", e.target.value)}
                   className="mt-1 border-2 border-gray-300 focus:border-primary"
                 />
               </div>

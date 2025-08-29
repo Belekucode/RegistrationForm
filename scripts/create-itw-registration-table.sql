@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS itw_registrations (
     parent_email VARCHAR(255) NOT NULL,
     
     -- Participant Information
-    participant_name VARCHAR(255) NOT NULL,
+    participant_legal_name VARCHAR(255) NOT NULL,
+    participant_preferred_name VARCHAR(255),
     participant_dob DATE NOT NULL,
     participant_zip VARCHAR(10) NOT NULL,
     
