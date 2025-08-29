@@ -21,9 +21,15 @@ CREATE TABLE IF NOT EXISTS itw_registrations (
     case_manager_name VARCHAR(255),
     case_manager_phone VARCHAR(20),
     case_manager_email VARCHAR(255),
-    allergies TEXT,
+    safety_concerns TEXT,
+    participant_strengths TEXT,
     social_behavior_description TEXT,
     additional_notes TEXT,
+    
+    -- Vocational Rehabilitation Counselor
+    counselor_name VARCHAR(255),
+    counselor_phone VARCHAR(20),
+    counselor_email VARCHAR(255),
     
     -- Status tracking
     status VARCHAR(50) DEFAULT 'pending',

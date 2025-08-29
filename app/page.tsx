@@ -37,9 +37,15 @@ interface FormData {
   caseManagerName: string
   caseManagerPhone: string
   caseManagerEmail: string
-  allergies: string
+  safetyConcerns: string
+  participantStrengths: string
   socialBehaviorDescription: string
   additionalNotes: string
+  
+  // Vocational Rehabilitation Counselor
+  counselorName: string
+  counselorPhone: string
+  counselorEmail: string
 }
 
 export default function HomePage() {
@@ -55,9 +61,13 @@ export default function HomePage() {
     caseManagerName: "",
     caseManagerPhone: "",
     caseManagerEmail: "",
-    allergies: "",
+    safetyConcerns: "",
+    participantStrengths: "",
     socialBehaviorDescription: "",
     additionalNotes: "",
+    counselorName: "",
+    counselorPhone: "",
+    counselorEmail: "",
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -113,9 +123,13 @@ export default function HomePage() {
         caseManagerName: "",
         caseManagerPhone: "",
         caseManagerEmail: "",
-        allergies: "",
+        safetyConcerns: "",
+        participantStrengths: "",
         socialBehaviorDescription: "",
         additionalNotes: "",
+        counselorName: "",
+        counselorPhone: "",
+        counselorEmail: "",
       })
       setTermsAgreed(false)
     } catch (error) {
@@ -315,11 +329,22 @@ export default function HomePage() {
               </div>
 
               <div>
-                <Label htmlFor="allergies">Allergies or Medical Considerations</Label>
+                <Label htmlFor="safetyConcerns">Safety Concerns</Label>
                 <Textarea
-                  id="allergies"
-                  value={formData.allergies}
-                  onChange={(e) => handleInputChange("allergies", e.target.value)}
+                  id="safetyConcerns"
+                  value={formData.safetyConcerns}
+                  onChange={(e) => handleInputChange("safetyConcerns", e.target.value)}
+                  className="mt-1 border-2 border-gray-300 focus:border-primary"
+                  rows={3}
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="participantStrengths">Participant Strengths</Label>
+                <Textarea
+                  id="participantStrengths"
+                  value={formData.participantStrengths}
+                  onChange={(e) => handleInputChange("participantStrengths", e.target.value)}
                   className="mt-1 border-2 border-gray-300 focus:border-primary"
                   rows={3}
                 />
@@ -346,6 +371,48 @@ export default function HomePage() {
                   className="mt-1 border-2 border-gray-300 focus:border-primary"
                   rows={3}
                   placeholder="Any other information you'd like us to know..."
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Vocational Rehabilitation Counselor */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <CalendarDays className="h-5 w-5" />
+                Vocational Rehabilitation Counselor
+              </CardTitle>
+              <CardDescription>Information about the vocational rehabilitation counselor</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <Label htmlFor="counselorName">Counselor Name</Label>
+                <Input
+                  id="counselorName"
+                  value={formData.counselorName}
+                  onChange={(e) => handleInputChange("counselorName", e.target.value)}
+                  className="mt-1 border-2 border-gray-300 focus:border-primary"
+                />
+              </div>
+              <div>
+                <Label htmlFor="counselorPhone">Counselor Phone</Label>
+                <Input
+                  id="counselorPhone"
+                  type="tel"
+                  value={formData.counselorPhone}
+                  onChange={(e) => handleInputChange("counselorPhone", e.target.value)}
+                  className="mt-1 border-2 border-gray-300 focus:border-primary"
+                />
+              </div>
+              <div>
+                <Label htmlFor="counselorEmail">Counselor Email</Label>
+                <Input
+                  id="counselorEmail"
+                  type="email"
+                  value={formData.counselorEmail}
+                  onChange={(e) => handleInputChange("counselorEmail", e.target.value)}
+                  className="mt-1 border-2 border-gray-300 focus:border-primary"
                 />
               </div>
             </CardContent>

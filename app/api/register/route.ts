@@ -36,9 +36,13 @@ export async function POST(request: NextRequest) {
         case_manager_name: formData.caseManagerName || null,
         case_manager_phone: formData.caseManagerPhone || null,
         case_manager_email: formData.caseManagerEmail || null,
-        allergies: formData.allergies || null,
+        safety_concerns: formData.safetyConcerns || null,
+        participant_strengths: formData.participantStrengths || null,
         social_behavior_description: formData.socialBehaviorDescription || null,
-        additional_notes: formData.additionalNotes || null
+        additional_notes: formData.additionalNotes || null,
+        counselor_name: formData.counselorName || null,
+        counselor_phone: formData.counselorPhone || null,
+        counselor_email: formData.counselorEmail || null
       })
       .select()
 
