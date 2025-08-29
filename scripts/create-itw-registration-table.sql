@@ -17,12 +17,10 @@ CREATE TABLE IF NOT EXISTS itw_registrations (
     participant_dob DATE NOT NULL,
     participant_zip VARCHAR(10) NOT NULL,
     
-    -- Class Preferences (stored as JSON array)
-    class_preferences JSONB DEFAULT '[]'::jsonb,
-    
     -- Additional Information
     case_manager_name VARCHAR(255),
     case_manager_phone VARCHAR(20),
+    case_manager_email VARCHAR(255),
     allergies TEXT,
     social_behavior_description TEXT,
     additional_notes TEXT,

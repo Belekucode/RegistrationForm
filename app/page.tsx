@@ -20,11 +20,6 @@ import {
 import { CalendarDays, Phone, User, Heart } from "lucide-react"
 import { toast } from "sonner"
 
-interface ClassPreference {
-  date: string
-  time: string
-}
-
 interface FormData {
   // Parent/Guardian Information
   parentName: string
@@ -38,12 +33,10 @@ interface FormData {
   participantDOB: string
   participantZip: string
 
-  // Class Preferences (up to 5)
-  classPreferences: ClassPreference[]
-
   // Additional Information
   caseManagerName: string
   caseManagerPhone: string
+  caseManagerEmail: string
   allergies: string
   socialBehaviorDescription: string
   additionalNotes: string
@@ -59,9 +52,9 @@ export default function HomePage() {
     participantPreferredName: "",
     participantDOB: "",
     participantZip: "",
-    classPreferences: [{ date: "", time: "" }],
     caseManagerName: "",
     caseManagerPhone: "",
+    caseManagerEmail: "",
     allergies: "",
     socialBehaviorDescription: "",
     additionalNotes: "",
@@ -72,28 +65,6 @@ export default function HomePage() {
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
-  }
-
-  const handleClassPreferenceChange = (index: number, field: "date" | "time", value: string) => {
-    const newPreferences = [...formData.classPreferences]
-    newPreferences[index] = { ...newPreferences[index], [field]: value }
-    setFormData((prev) => ({ ...prev, classPreferences: newPreferences }))
-  }
-
-  const addClassPreference = () => {
-    if (formData.classPreferences.length < 5) {
-      setFormData((prev) => ({
-        ...prev,
-        classPreferences: [...prev.classPreferences, { date: "", time: "" }],
-      }))
-    }
-  }
-
-  const removeClassPreference = (index: number) => {
-    if (formData.classPreferences.length > 1) {
-      const newPreferences = formData.classPreferences.filter((_, i) => i !== index)
-      setFormData((prev) => ({ ...prev, classPreferences: newPreferences }))
-    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -139,9 +110,9 @@ export default function HomePage() {
         participantPreferredName: "",
         participantDOB: "",
         participantZip: "",
-        classPreferences: [{ date: "", time: "" }],
         caseManagerName: "",
         caseManagerPhone: "",
+        caseManagerEmail: "",
         allergies: "",
         socialBehaviorDescription: "",
         additionalNotes: "",
@@ -300,54 +271,6 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          {/* Class Preferences */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <CalendarDays className="h-5 w-5" />
-                Class Preferences
-              </CardTitle>
-              <CardDescription>Please select up to 5 preferred dates and times for classes</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {formData.classPreferences.map((preference, index) => (
-                <div key={index} className="flex gap-2 items-end">
-                  <div className="flex-1">
-                    <Label htmlFor={`date-${index}`}>Preferred Date {index + 1}</Label>
-                    <Input
-                      id={`date-${index}`}
-                      type="date"
-                      value={preference.date}
-                      onChange={(e) => handleClassPreferenceChange(index, "date", e.target.value)}
-                      className="mt-1 border-2 border-gray-300 focus:border-primary"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <Label htmlFor={`time-${index}`}>Preferred Time</Label>
-                    <Input
-                      id={`time-${index}`}
-                      type="time"
-                      value={preference.time}
-                      onChange={(e) => handleClassPreferenceChange(index, "time", e.target.value)}
-                      className="mt-1 border-2 border-gray-300 focus:border-primary"
-                    />
-                  </div>
-                  {formData.classPreferences.length > 1 && (
-                    <Button type="button" variant="outline" size="sm" onClick={() => removeClassPreference(index)}>
-                      Remove
-                    </Button>
-                  )}
-                </div>
-              ))}
-
-              {formData.classPreferences.length < 5 && (
-                <Button type="button" variant="outline" onClick={addClassPreference} className="w-full bg-transparent">
-                  Add Another Preference
-                </Button>
-              )}
-            </CardContent>
-          </Card>
-
           {/* Additional Information */}
           <Card>
             <CardHeader>
@@ -355,7 +278,7 @@ export default function HomePage() {
                 <Phone className="h-5 w-5" />
                 Additional Information
               </CardTitle>
-              <CardDescription>Optional information to help us better serve you</CardDescription>
+              <CardDescription>If you have a case manager, please provide their information</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -378,6 +301,17 @@ export default function HomePage() {
                     className="mt-1 border-2 border-gray-300 focus:border-primary"
                   />
                 </div>
+              </div>
+
+              <div>
+                                 <Label htmlFor="caseManagerEmail">Case Manager Email</Label>
+                <Input
+                  id="caseManagerEmail"
+                  type="email"
+                  value={formData.caseManagerEmail}
+                  onChange={(e) => handleInputChange("caseManagerEmail", e.target.value)}
+                  className="mt-1 border-2 border-gray-300 focus:border-primary"
+                />
               </div>
 
               <div>

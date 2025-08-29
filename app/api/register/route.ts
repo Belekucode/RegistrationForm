@@ -33,9 +33,9 @@ export async function POST(request: NextRequest) {
         participant_preferred_name: formData.participantPreferredName || null,
         participant_dob: formData.participantDOB,
         participant_zip: formData.participantZip,
-        class_preferences: formData.classPreferences.filter((pref: { date: string; time: string }) => pref.date && pref.time),
         case_manager_name: formData.caseManagerName || null,
         case_manager_phone: formData.caseManagerPhone || null,
+        case_manager_email: formData.caseManagerEmail || null,
         allergies: formData.allergies || null,
         social_behavior_description: formData.socialBehaviorDescription || null,
         additional_notes: formData.additionalNotes || null
